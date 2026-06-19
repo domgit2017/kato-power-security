@@ -445,59 +445,72 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
   <!-- CLIENT FORM -->
 
-  <section class="contact-form">
+    <section class="contact-form">
+
 
     <div class="container">
+
 
       <h2 class="section-title">
         Request Security Services
       </h2>
 
-      <form>
 
-        <input type="text" placeholder="Full Name" required>
+      <form action="https://formsubmit.co/josephmunene135@gmail.com" method="POST">
 
-        <input type="email" placeholder="Email Address" required>
 
-        <input type="tel" placeholder="Phone Number" required>
+        <input type="hidden" name="_captcha" value="false">
 
-        <select required>
 
-          <option value="">
-            Select Service
-          </option>
+        <input type="hidden" name="_subject" value="New Client Inquiry">
 
-          <option>
-            Security Guards
-          </option>
 
-          <option>
-            CCTV Installation
-          </option>
+        <input type="text" name="Full Name" placeholder="Full Name" required>
 
-          <option>
-            Access Control
-          </option>
 
-          <option>
-            VIP Protection
-          </option>
+        <input type="email" name="Email" placeholder="Email Address" required>
 
-          <option>
-            Security Consultancy
-          </option>
+
+        <input type="tel" name="Phone" placeholder="Phone Number" required>
+
+
+        <select name="Service Required" required>
+
+
+          <option value="">Select Service</option>
+
+
+          <option>Security Guards</option>
+
+
+          <option>CCTV Installation</option>
+
+
+          <option>Access Control</option>
+
+
+          <option>VIP Protection</option>
+
+
+          <option>Security Consultancy</option>
+
 
         </select>
 
-        <textarea placeholder="Describe Your Requirements" required></textarea>
+
+        <textarea name="Message" placeholder="Describe Your Requirements" required></textarea>
+
 
         <button type="submit">
           Submit Request
         </button>
 
+
       </form>
 
+
     </div>
+
 
   </section>
 

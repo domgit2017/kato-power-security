@@ -173,24 +173,34 @@ document.addEventListener("DOMContentLoaded", () => {
      FORM HANDLING
   ========================== */
 
-  const forms =
-    document.querySelectorAll("form");
+    const forms = document.querySelectorAll("form");
+
 
   forms.forEach(form => {
-
     form.addEventListener("submit", (e) => {
-
       e.preventDefault();
 
-      alert(
-        "Thank you. Your submission has been received successfully."
-      );
 
-      form.reset();
+      const formData = new FormData(form);
 
+
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      })
+        .then(() => {
+          alert("Thank you. Your submission has been received successfully.");
+          form.reset();
+        })
+        .catch(error => {
+          console.error("Submission failed:", error);
+          alert("Something went wrong. Please try again.");
+        });
     });
-
   });
+
+
 
   /* ==========================
      HEADER SCROLL EFFECT

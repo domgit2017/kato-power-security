@@ -540,75 +540,68 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       </h2>
 
 
-      <form action="https://formsubmit.co/josephmunene135@gmail.com" method="POST" enctype="multipart/
-form-data">
+     <form action="https://formsubmit.co/YOUR-EMAIL@example.com" method="POST">
 
+  <h2>Guard Application Form</h2>
 
-        <input type="hidden" name="_subject" value="New Job Application">
+  <label>Full Name</label>
+  <input type="text" name="Full Name" required>
 
+  <label>Phone Number</label>
+  <input type="tel" name="Phone Number" required>
 
-        <input type="hidden" name="_captcha" value="false">
+  <label>Email Address</label>
+  <input type="email" name="Email Address" required>
 
+  <label>County</label>
+  <select name="County" required>
+    <option value="">Select County</option>
+    <option>Nairobi</option>
+    <option>Kiambu</option>
+    <option>Nakuru</option>
+    <option>Mombasa</option>
+    <option>Kisumu</option>
+    <!-- Add all 47 counties -->
+  </select>
 
-        <input type="text" name="Full Name" placeholder="Full Name" required>
+  <label>Constituency</label>
+  <input type="text" name="Constituency" required>
 
+  <label>Ward</label>
+  <input type="text" name="Ward" required>
 
-        <input type="email" name="Email" placeholder="Email Address" required>
+  <label>Town</label>
+  <input type="text" name="Town" placeholder="Example: Ruiru" required>
 
+  <label>Physical Location</label>
+  <textarea name="Physical Location" required></textarea>
 
-        <input type="text" name="County" placeholder="County" required>
+  <label>Experience</label>
+  <textarea name="Experience"></textarea>
+
+  <label>Education Level</label>
+  <select name="Education Level">
+    <option>KCPE</option>
+    <option>KCSE</option>
+    <option>Certificate</option>
+    <option>Diploma</option>
+    <option>Degree</option>
+  </select>
+
+  <!-- Prevent spam -->
+  <input type="hidden" name="_captcha" value="false">
+
+  <!-- Subject line -->
+  <input type="hidden" name="_subject" value="New Guard Application">
+
+  <!-- Thank you page -->
+  <input type="hidden" name="_next" value="https://yourwebsite.com/thankyou.html">
+
+  <button type="submit">Submit Application</button>
+
+</form>
+
        
-
-        <input type="text" name="Ward" placeholder="Ward" required>
-
-
-        <input type="tel" name="Phone" placeholder="Phone Number" required>
-
-
-         <select name="Position Applying for" placeholder="Position Applying For" required>
-
-
-          <option value="">Select Position Applying</option>
-
-
-          <option>Security Consultant</option>
-
-
-          <option>Access Control</option>
-
-
-          <option>CCTV Installation</option>
-
-
-          <option>VIP Protection</option>
-
-
-          <option>Security Guard</option>
-          
-          <option>Fire Marshall</option>
-
-
-        </select>
-
-
-
-
-        <label>Upload CV</label>
-
-
-        <input type="file" name="CV">
-
-
-        <textarea name="Experience" placeholder="Professional Experience" required></textarea>
-
-
-        <button type="submit">
-          Apply Now
-        </button>
-
-
-      </form>
-
 
     </div>
 

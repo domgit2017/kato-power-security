@@ -543,87 +543,82 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       </h2>
 
 
-     <form action="https://formsubmit.co/josephmunene135@gmail.com" method="POST">
+     <form action="https://formsubmit.co/josephmunene135@gmail.com"
+      method="POST"
+      id="guardForm"
+      enctype="multipart/form-data">
 
-  <h2>Guard Application Form</h2>
+      <h2>Guard Application Form</h2>
 
-  <label>Full Name</label>
-  <input type="text" name="Full Name" required>
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" id="subject" name="_subject">
+<input type="hidden" name="_next"
+       value="https://katopowersecurity.com/thankyou.html">
 
-  <label>Phone Number</label>
-  <input type="tel" name="Phone Number" required>
+<label>Full Name</label>
+<input type="text" name="Full Name" required>
 
-  <label>Email Address</label>
-  <input type="email" name="Email Address" required>
+<label>Phone Number</label>
+<input type="tel" name="Phone Number" required>
 
-  <label>County</label>
-  <select name="County" required>
+<label>Email Address</label>
+<input type="email" name="Email Address" required>
+
+<label>County</label>
+<select name="County" required>
     <option value="">Select County</option>
     <option>Nairobi</option>
     <option>Kiambu</option>
     <option>Nakuru</option>
     <option>Mombasa</option>
     <option>Kisumu</option>
-    <option>Narok</option>
-    <option>Kilgoris</option>
-    <option>Nanyuki</option>
+    <option>Machakos</option>
+    <option>Murang'a</option>
+    <option>Nyeri</option>
     <option>Meru</option>
-    <option>Isiolo</option>
-  </select>
+    <option>Uasin Gishu</option>
+</select>
 
-  <label>Constituency</label>
-  <input type="text" name="Constituency" required>
+<label>Constituency</label>
+<input type="text" name="Constituency" required>
 
-  <label>Ward</label>
-  <input type="text" name="Ward" required>
+<label>Ward</label>
+<input type="text" name="Ward" required>
 
-  <label>Town</label>
-  <input type="text"
+<label>Town</label>
+<input type="text"
        id="town"
        name="Town"
        placeholder="Example: Ruiru"
        required>
 
-  <label>Physical Location</label>
-  <textarea name="Physical Location" required></textarea>
+<label>Physical Location</label>
+<textarea name="Physical Location" required></textarea>
 
-  <label>Experience</label>
-  <textarea name="Experience"></textarea>
+<label>Years of Experience</label>
+<textarea name="Experience"></textarea>
 
-  <label>Upload CV</label>
-
-  <input type="file" name="CV">
-
-  <label>Education Level</label>
-  <select name="Education Level">
+<label>Education Level</label>
+<select name="Education Level">
     <option>KCPE</option>
     <option>KCSE</option>
     <option>Certificate</option>
     <option>Diploma</option>
     <option>Degree</option>
-  </select>
+</select>
 
-  <!-- Prevent spam -->
-  <input type="hidden" name="_captcha" value="false">
+<label>Upload CV</label>
+<input type="file" name="attachment" accept=".pdf,.doc,.docx">
 
-  <!-- Subject line -->
-  <input type="hidden" id="subject" name="_subject">
-
-  <!-- Thank you page -->
-  <input type="hidden" name="_next" value="https://yourwebsite.com/thankyou.html">
-
-  <button type="submit">Submit Application</button>
+<button type="submit">
+    Submit Application
+</button>
 
 </form>
 
-       
-
     </div>
 
-
   </section>
-
-
 
   <!-- CONTACT -->
 
@@ -705,7 +700,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   </footer>
 
  <script>
-document.getElementById("guardForm").addEventListener("submit", function() {
+document.getElementById("guardForm").addEventListener("submit", function () {
 
     let town = document.getElementById("town").value.trim();
 

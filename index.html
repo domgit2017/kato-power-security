@@ -469,7 +469,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       </h2>
 
 
-      <form action="https://formsubmit.co/josephmunene135@gmail.com" method="POST">
+      <form action="https://formsubmit.co/josephmunene135@gmail.com"
+      method="POST"
+      id="guardForm"
+      enctype="multipart/form-data">
 
 
         <input type="hidden" name="_captcha" value="false">
@@ -571,7 +574,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   <input type="text" name="Ward" required>
 
   <label>Town</label>
-  <input type="text" name="Town" placeholder="Example: Ruiru" required>
+  <input type="text"
+       id="town"
+       name="Town"
+       placeholder="Example: Ruiru"
+       required>
 
   <label>Physical Location</label>
   <textarea name="Physical Location" required></textarea>
@@ -596,7 +603,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   <input type="hidden" name="_captcha" value="false">
 
   <!-- Subject line -->
-  <input type="hidden" name="_subject" value="New Guard Application">
+  <input type="hidden" id="subject" name="_subject">
 
   <!-- Thank you page -->
   <input type="hidden" name="_next" value="https://yourwebsite.com/thankyou.html">
@@ -692,6 +699,17 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     </p>
 
   </footer>
+
+ <script>
+document.getElementById("guardForm").addEventListener("submit", function() {
+
+    let town = document.getElementById("town").value.trim();
+
+    document.getElementById("subject").value =
+        "Guard Application - " + town;
+
+});
+</script>
 
   <script src="script.js"></script>
 

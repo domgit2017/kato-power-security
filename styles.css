@@ -410,6 +410,10 @@ form button:hover {
   background: #083a7c;
 }
 
+#quote{
+    display:none;
+}
+
 /* ==========================
    CONTACT
 ========================== */

@@ -68,3 +68,27 @@ document.getElementById("guardForm").addEventListener("submit", () => {
 
   document.getElementById("subject").value = "Guard Application - " + town;
 });
+
+if(document.getElementById("serviceForm")){
+
+document
+.getElementById("serviceForm")
+.addEventListener("submit", ()=>{
+
+const county=document.getElementById("county").value;
+
+const constituency=document.getElementById("constituency").value;
+
+const ward=document.getElementById("ward").value;
+
+const town=document.getElementById("town").value;
+
+const service=document.getElementById("service").value;
+
+document.getElementById("subject").value=
+
+`SERVICE REQUEST | ${service} | ${county} | ${constituency} | ${ward} | ${town}`;
+
+});
+
+}

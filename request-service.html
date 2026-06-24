@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Request Security Services | Kato Power Security</title>
+
+    <link rel="stylesheet" href="application.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <img src="images/Logo.webp" alt="Logo" />
+
+        <h2>Kato Power Security</h2>
+      </div>
+
+      <a href="index.html" class="back-home">
+        <i class="fas fa-arrow-left"></i>
+
+        Back to Home
+      </a>
+    </header>
+
+    <section class="application-section">
+      <div class="container">
+        <h1>Request Security Services</h1>
+
+        <form
+          action="https://formsubmit.co/josephmunene135@gmail.com"
+          method="POST"
+          id="serviceForm"
+        >
+          <input type="hidden" name="_captcha" value="false" />
+
+          <input type="hidden" id="subject" name="_subject" />
+
+          <input
+            type="hidden"
+            name="_next"
+            value="https://katopowersecurity.com/thankyou.html"
+          />
+
+          <label>Company / Client Name</label>
+          <input type="text" name="Client Name" required />
+
+          <label>Contact Person</label>
+          <input type="text" name="Contact Person" required />
+
+          <label>Phone Number</label>
+          <input type="tel" name="Phone Number" required />
+
+          <label>Email Address</label>
+          <input type="email" name="Email Address" />
+
+          <label>County</label>
+          <select id="county" name="County" required>
+            <option>Select County</option>
+          </select>
+
+          <label>Constituency</label>
+          <select id="constituency" name="Constituency" required>
+            <option>Select Constituency</option>
+          </select>
+
+          <label>Ward</label>
+          <select id="ward" name="Ward" required>
+            <option>Select Ward</option>
+          </select>
+
+          <label>Town</label>
+          <input type="text" id="town" name="Town" required />
+
+          <label>Security Service Required</label>
+
+          <select id="service" name="Security Service">
+            <option>Manned Guarding</option>
+
+            <option>VIP Protection</option>
+
+            <option>CCTV Installation</option>
+
+            <option>Alarm Systems</option>
+
+            <option>Dog Handling Services</option>
+
+            <option>Event Security</option>
+
+            <option>Corporate Security</option>
+
+            <option>Residential Security</option>
+          </select>
+
+          <label>Number of Guards Required</label>
+
+          <input type="number" name="Number of Guards" />
+
+          <label>Duration Required</label>
+
+          <select name="Duration">
+            <option>One Day</option>
+
+            <option>One Week</option>
+
+            <option>One Month</option>
+
+            <option>Three Months</option>
+
+            <option>Six Months</option>
+
+            <option>One Year</option>
+          </select>
+
+          <label>Additional Requirements</label>
+
+          <textarea name="Requirements"></textarea>
+
+          <button type="submit">Submit Request</button>
+        </form>
+      </div>
+    </section>
+
+    <script src="application.js"></script>
+  </body>
+</html>

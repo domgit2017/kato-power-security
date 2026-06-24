@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Guard Application | Kato Power Security Services Ltd</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="application.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="images/Logo.webp" alt="Kato Security Logo" />
+        <h2>Kato Power Security</h2>
+      </div>
+
+      <a href="index.html" class="back-home">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+      </a>
+    </header>
+
+    <section class="application-section">
+      <div class="container">
+        <h1>Guard Application Form</h1>
+
+        <form
+          action="https://formsubmit.co/josephmunene135@gmail.com"
+          method="POST"
+          enctype="multipart/form-data"
+          id="guardForm"
+        >
+          <input type="hidden" name="_captcha" value="false" />
+
+          <input type="hidden" id="subject" name="_subject" />
+
+          <input
+            type="hidden"
+            name="_next"
+            value="https://katopowersecurity.com/thankyou.html"
+          />
+
+          <label>Full Name</label>
+          <input type="text" name="Full Name" required />
+
+          <label>Phone Number</label>
+          <input type="tel" name="Phone Number" required />
+
+          <label>Email Address</label>
+          <input type="email" name="Email Address" required />
+
+          <label>County</label>
+          <select id="county" name="County" required>
+            <option value="">Select County</option>
+          </select>
+
+          <label>Constituency</label>
+          <select id="constituency" name="Constituency" required>
+            <option value="">Select Constituency</option>
+          </select>
+
+          <label>Ward</label>
+          <select id="ward" name="Ward" required>
+            <option value="">Select Ward</option>
+          </select>
+
+          <label>Town</label>
+          <input
+            type="text"
+            id="town"
+            name="Town"
+            placeholder="Example: Ruiru"
+            required
+          />
+
+          <label>Physical Location</label>
+          <textarea name="Physical Location" required></textarea>
+
+          <label>Years of Experience</label>
+          <textarea name="Experience"></textarea>
+
+          <label>Education Level</label>
+
+          <select name="Education Level">
+            <option>KCPE</option>
+
+            <option>KCSE</option>
+
+            <option>Certificate</option>
+
+            <option>Diploma</option>
+
+            <option>Degree</option>
+          </select>
+
+          <label>Upload CV</label>
+
+          <input
+            type="file"
+            name="attachment"
+            accept=".pdf,.doc,.docx"
+            required
+          />
+
+          <button type="submit">Submit Application</button>
+        </form>
+      </div>
+    </section>
+
+    <script src="locations.js"></script>
+
+    <script src="application.js"></script>
+  </body>
+</html>

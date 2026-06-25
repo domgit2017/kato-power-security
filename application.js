@@ -80,3 +80,69 @@ if (document.getElementById('serviceForm')) {
     }
   });
 }
+
+// ===== GUARD APPLICATION FORM SUBMISSION =====
+
+const guardForm = document.getElementById("guardForm");
+
+if (guardForm) {
+
+  guardForm.addEventListener("submit", async function (e) {
+
+    e.preventDefault();
+
+    const formData = {
+      fullName: document.getElementById("fullName").value,
+      phone: document.getElementById("phone").value,
+      email: document.getElementById("email").value,
+      county: document.getElementById("county").value,
+      constituency: document.getElementById("constituency").value,
+      ward: document.getElementById("ward").value,
+      location: document.getElementById("location").value,
+      experience: document.getElementById("experience").value,
+      education: document.getElementById("education").value
+    };
+
+    try {
+
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbxJyIvFZVQm9VusRlkzxbFcTjHxm4lblh3M5US9m9aeGTki6TPbovrjpl_oVqwTifeL/exec",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData)
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.success) {
+
+        alert(
+          "Application submitted successfully!\n\nApplicant ID: " +
+          result.applicantId
+        );
+
+        guardForm.reset();
+
+      } else {
+
+        alert("Application submission failed.");
+
+      }
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert(
+        "Application submitted but browser could not read the response. Please check Google Sheets."
+      );
+
+    }
+
+  });
+
+}

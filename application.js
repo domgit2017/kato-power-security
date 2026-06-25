@@ -48,3 +48,24 @@ constituencySelect.addEventListener("change", () => {
   }
 });
 
+const guardForm = document.getElementById("guardForm");
+const iframe = document.getElementById("hidden_iframe");
+
+if (guardForm && iframe) {
+  guardForm.addEventListener("submit", function () {
+
+    setTimeout(() => {
+
+      document.getElementById("successPopup").style.display = "flex";
+
+      guardForm.reset();
+
+    }, 1500);
+
+  });
+}
+
+function closePopup() {
+  document.getElementById("successPopup").style.display = "none";
+}
+

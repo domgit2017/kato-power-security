@@ -97,7 +97,38 @@
 
           <button type="submit">Submit Application</button>
         </form>
-        <iframe name="hidden_iframe" style="display:none;"></iframe>
+        <iframe
+  name="hidden_iframe"
+  id="hidden_iframe"
+  style="display:none;"
+></iframe>
+
+<div id="successPopup" class="success-popup">
+  <div class="success-popup-content">
+
+    <div class="success-icon">
+      <i class="fas fa-shield-check"></i>
+      ✓
+    </div>
+
+    <h2>Application Submitted Successfully</h2>
+
+    <p>
+      Thank you for applying to
+      <strong>Kato Power Security Services Ltd</strong>.
+    </p>
+
+    <p>
+      Your application has been received and is under review.
+      Shortlisted candidates will be contacted through phone or email.
+    </p>
+
+    <button type="button" onclick="closePopup()">
+      Continue
+    </button>
+
+  </div>
+</div>
       </div>
     </section>
 

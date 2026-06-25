@@ -1,54 +1,48 @@
+// ===============================
+// KATO POWER APPLICATION JS
+// CLEAN PRODUCTION VERSION
+// ===============================
 
-alert("APPLICATION JS IS LOADING");
-
+alert("APPLICATION JS LOADED");
 
 // ===== LOAD KENYA LOCATIONS =====
 
 let kenyaData = {};
 
-fetch('kenya-locations.json')
+fetch("kenya-locations.json")
   .then((response) => response.json())
   .then((data) => {
     kenyaData = data;
 
-    const countySelect = document.getElementById('county');
+    const countySelect = document.getElementById("county");
 
     for (let county in kenyaData) {
-      countySelect.innerHTML += `
-        <option value="${county}">
-            ${county}
-        </option>
-        `;
+      countySelect.innerHTML += `<option value="${county}">${county}</option>`;
     }
   });
 
-const countySelect = document.getElementById('county');
-const constituencySelect = document.getElementById('constituency');
-const wardSelect = document.getElementById('ward');
+const countySelect = document.getElementById("county");
+const constituencySelect = document.getElementById("constituency");
+const wardSelect = document.getElementById("ward");
 
-// ===== CONSTITUENCIES =====
+// ===== COUNTY CHANGE =====
 
-countySelect.addEventListener('change', () => {
+countySelect.addEventListener("change", () => {
   constituencySelect.innerHTML = `<option value="">Select Constituency</option>`;
-
   wardSelect.innerHTML = `<option value="">Select Ward</option>`;
 
   let county = countySelect.value;
 
   if (county && kenyaData[county]) {
     for (let constituency in kenyaData[county]) {
-      constituencySelect.innerHTML += `
-            <option value="${constituency}">
-                ${constituency}
-            </option>
-            `;
+      constituencySelect.innerHTML += `<option value="${constituency}">${constituency}</option>`;
     }
   }
 });
 
-// ===== WARDS =====
+// ===== CONSTITUENCY CHANGE =====
 
-constituencySelect.addEventListener('change', () => {
+constituencySelect.addEventListener("change", () => {
   wardSelect.innerHTML = `<option value="">Select Ward</option>`;
 
   let county = countySelect.value;
@@ -56,76 +50,58 @@ constituencySelect.addEventListener('change', () => {
 
   if (county && constituency && kenyaData[county][constituency]) {
     kenyaData[county][constituency].forEach((ward) => {
-      wardSelect.innerHTML += `
-            <option value="${ward}">
-                ${ward}
-            </option>
-            `;
+      wardSelect.innerHTML += `<option value="${ward}">${ward}</option>`;
     });
   }
 });
 
-if (document.getElementById('serviceForm')) {
-  document.getElementById('serviceForm').addEventListener('submit', () => {
-    const county = document.getElementById('county').value;
-
-    const constituency = document.getElementById('constituency').value;
-
-    const ward = document.getElementById('ward').value;
-
-    const town = document.getElementById('town').value;
-
-    const service = document.getElementById('service').value;
-
-    const subjectField = document.getElementById('subject');
-
-    if (subjectField) {
-      subjectField.value = `SERVICE REQUEST | ${service} | ${county} | ${constituency} | ${ward} | ${town}`;
-    }
-  });
-}
-
-// ===== GUARD APPLICATION FORM SUBMISSION =====
+// ===============================
+// GUARD APPLICATION SUBMISSION
+// ===============================
 
 const guardForm = document.getElementById("guardForm");
 
-guardForm.addEventListener("submit", async function (e) {
-  e.preventDefault();
+if (guardForm) {
+  guardForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-  console.log("FORM SUBMITTED");
+    console.log("FORM SUBMITTED");
 
-  const formData = {
-    fullName: document.getElementById("fullName").value,
-    phone: document.getElementById("phone").value,
-    email: document.getElementById("email").value,
-    county: document.getElementById("county").value,
-    constituency: document.getElementById("constituency").value,
-    ward: document.getElementById("ward").value,
-    town: document.getElementById("town").value,
-    location: document.getElementById("location").value,
-    experience: document.getElementById("experience").value,
-    education: document.getElementById("education").value
-  };
+    const formData = new URLSearchParams();
 
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbxJyIvFZVQm9VusRlkzxbFcTjHxm4lblh3M5US9m9aeGTki6TPbovrjpl_oVqwTifeL/exec", {
-      method: "POST",
-      body: JSON.stringify(formData)
-    });
+    formData.append("Full Name", document.getElementById("fullName").value);
+    formData.append("Phone Number", document.getElementById("phone").value);
+    formData.append("Email Address", document.getElementById("email").value);
+    formData.append("County", document.getElementById("county").value);
+    formData.append("Constituency", document.getElementById("constituency").value);
+    formData.append("Ward", document.getElementById("ward").value);
+    formData.append("Town", document.getElementById("town").value);
+    formData.append("Physical Location", document.getElementById("location").value);
+    formData.append("Experience", document.getElementById("experience").value);
+    formData.append("Education Level", document.getElementById("education").value);
 
-    const result = await response.json();
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbxJyIvFZVQm9VusRlkzxbFcTjHxm4lblh3M5US9m9aeGTki6TPbovrjpl_oVqwTifeL/exec",
+        {
+          method: "POST",
+          body: formData
+        }
+      );
 
-    console.log("SERVER RESPONSE:", result);
+      const resultText = await response.text();
 
-    if (result.success) {
-      alert("Application submitted successfully!\nID: " + result.applicantId);
-      guardForm.reset();
-    } else {
-      alert("Submission failed.");
+      console.log("SERVER RESPONSE:", resultText);
+
+      if (resultText.includes("success")) {
+        alert("Application submitted successfully!");
+        guardForm.reset();
+      } else {
+        alert("Submission failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("ERROR:", error);
+      alert("Network error. Check console.");
     }
-
-  } catch (error) {
-    console.error("ERROR:", error);
-    alert("Error submitting application. Check console.");
-  }
-});
+  });
+}

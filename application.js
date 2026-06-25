@@ -2,12 +2,12 @@
 
 let kenyaData = {};
 
-fetch("kenya-locations.json")
+fetch('kenya-locations.json')
   .then((response) => response.json())
   .then((data) => {
     kenyaData = data;
 
-    const countySelect = document.getElementById("county");
+    const countySelect = document.getElementById('county');
 
     for (let county in kenyaData) {
       countySelect.innerHTML += `
@@ -18,13 +18,13 @@ fetch("kenya-locations.json")
     }
   });
 
-const countySelect = document.getElementById("county");
-const constituencySelect = document.getElementById("constituency");
-const wardSelect = document.getElementById("ward");
+const countySelect = document.getElementById('county');
+const constituencySelect = document.getElementById('constituency');
+const wardSelect = document.getElementById('ward');
 
 // ===== CONSTITUENCIES =====
 
-countySelect.addEventListener("change", () => {
+countySelect.addEventListener('change', () => {
   constituencySelect.innerHTML = `<option value="">Select Constituency</option>`;
 
   wardSelect.innerHTML = `<option value="">Select Ward</option>`;
@@ -44,7 +44,7 @@ countySelect.addEventListener("change", () => {
 
 // ===== WARDS =====
 
-constituencySelect.addEventListener("change", () => {
+constituencySelect.addEventListener('change', () => {
   wardSelect.innerHTML = `<option value="">Select Ward</option>`;
 
   let county = countySelect.value;
@@ -61,86 +61,69 @@ constituencySelect.addEventListener("change", () => {
   }
 });
 
-// ===== EMAIL SUBJECT =====
+if (document.getElementById('serviceForm')) {
+  document.getElementById('serviceForm').addEventListener('submit', () => {
+    const county = document.getElementById('county').value;
 
-document.getElementById("guardForm").addEventListener("submit", () => {
-  let town = document.getElementById("town").value.trim();
+    const constituency = document.getElementById('constituency').value;
 
-  document.getElementById("subject").value = "Guard Application - " + town;
-});
+    const ward = document.getElementById('ward').value;
 
-if(document.getElementById("serviceForm")){
+    const town = document.getElementById('town').value;
+
+    const service = document.getElementById('service').value;
+
+    document.getElementById('subject').value =
+      `SERVICE REQUEST | ${service} | ${county} | ${constituency} | ${ward} | ${town}`;
+  });
+}
 
 document
-.getElementById("serviceForm")
-.addEventListener("submit", ()=>{
+  .getElementById('guardForm')
+  .addEventListener('submit', async function (e) {
+    e.preventDefault();
 
-const county=document.getElementById("county").value;
+    const data = {
+      fullName: document.getElementById('fullName').value,
+      phone: document.getElementById('phone').value,
+      email: document.getElementById('email').value,
+      county: document.getElementById('county').value,
+      constituency: document.getElementById('constituency').value,
+      ward: document.getElementById('ward').value,
+      town: document.getElementById('town').value,
+      location: document.getElementById('location').value,
+      experience: document.getElementById('experience').value,
+      education: document.getElementById('education').value,
+    };
 
-const constituency=document.getElementById("constituency").value;
+    try {
+      const response = await fetch(
+        'https://script.google.com/macros/s/AKfycbxJyIvFZVQm9VusRlkzxbFcTjHxm4lblh3M5US9m9aeGTki6TPbovrjpl_oVqwTifeL/exec',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        },
+      );
 
-const ward=document.getElementById("ward").value;
+      const result = await response.json();
 
-const town=document.getElementById("town").value;
+      if (result.success) {
+        alert(
+          'Application submitted successfully.\nApplicant ID: ' +
+            result.applicantId,
+        );
 
-const service=document.getElementById("service").value;
+        this.reset();
 
-document.getElementById("subject").value=
-
-`SERVICE REQUEST | ${service} | ${county} | ${constituency} | ${ward} | ${town}`;
-
-});
-
-}
-
-document.getElementById('guardForm').addEventListener('submit', async function (e) {
-e.preventDefault();
-
-const data = {
-fullName: document.getElementById('fullName').value,
-phone: document.getElementById('phone').value,
-email: document.getElementById('email').value,
-county: document.getElementById('county').value,
-constituency: document.getElementById('constituency').value,
-ward: document.getElementById('ward').value,
-town: document.getElementById('town').value,
-location: document.getElementById('location').value,
-experience: document.getElementById('experience').value,
-education: document.getElementById('education').value
-};
-
-try {
-const response = await fetch(
-'https://script.google.com/macros/s/AKfycbxJyIvFZVQm9VusRlkzxbFcTjHxm4lblh3M5US9m9aeGTki6TPbovrjpl_oVqwTifeL/exec',
-{
-method: 'POST',
-headers: {
-'Content-Type': 'application/json'
-},
-body: JSON.stringify(data)
-}
-);
-
-```
-const result = await response.json();
-
-if (result.success) {
-  alert(
-    'Application submitted successfully.\nApplicant ID: ' +
-      result.applicantId
-  );
-
-  this.reset();
-
-  window.location.href = 'thankyou.html';
-} else {
-  alert('Submission failed.');
-}
-```
-
-} catch (error) {
-console.error(error);
-alert('Error submitting application.');
-}
-});
-
+        window.location.href = 'thankyou.html';
+      } else {
+        alert('Submission failed.');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Error submitting application.');
+    }
+  });

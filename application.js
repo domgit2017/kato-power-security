@@ -104,9 +104,6 @@ document
         'https://script.google.com/macros/s/AKfycbxJyIvFZVQm9VusRlkzxbFcTjHxm4lblh3M5US9m9aeGTki6TPbovrjpl_oVqwTifeL/exec',
         {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
           body: JSON.stringify(data),
         },
       );

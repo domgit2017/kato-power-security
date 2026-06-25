@@ -38,26 +38,15 @@
       <div class="container">
         <h1>Guard Application Form</h1>
 
-        <form id="guardForm"
-        >
-          <input type="hidden" name="_captcha" value="false" />
-
-          <input type="hidden" id="subject" name="_subject" />
-
-          <input
-            type="hidden"
-            name="_next"
-            value="https://katopowersecurity.com/thankyou.html"
-          />
-
+        <form id="guardForm">
           <label>Full Name</label>
-          <input type="text" name="Full Name" required />
+          <input type="text" id="fullName" name="Full Name" required />
 
           <label>Phone Number</label>
-          <input type="tel" name="Phone Number" required />
+          <input type="tel" id="phone" name="Phone Number" required />
 
           <label>Email Address</label>
-          <input type="email" name="Email Address" required />
+          <input type="email" id="email" name="Email Address" required />
 
           <label>County</label>
           <select id="county" name="County" required>
@@ -84,25 +73,21 @@
           />
 
           <label>Physical Location</label>
-          <textarea name="Physical Location" required></textarea>
+
+          <textarea id="location" name="Physical Location" required></textarea>
 
           <label>Years of Experience</label>
-          <textarea name="Experience"></textarea>
+
+          <textarea id="experience" name="Experience"></textarea>
 
           <label>Education Level</label>
-
-          <select name="Education Level">
+          <select id="education" name="Education Level">
             <option>KCPE</option>
-
             <option>KCSE</option>
-
             <option>Certificate</option>
-
             <option>Diploma</option>
-
             <option>Degree</option>
           </select>
-
 
           <button type="submit">Submit Application</button>
         </form>

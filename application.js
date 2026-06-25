@@ -73,8 +73,11 @@ if (document.getElementById('serviceForm')) {
 
     const service = document.getElementById('service').value;
 
-    document.getElementById('subject').value =
-      `SERVICE REQUEST | ${service} | ${county} | ${constituency} | ${ward} | ${town}`;
+    const subjectField = document.getElementById('subject');
+
+    if (subjectField) {
+      subjectField.value = `SERVICE REQUEST | ${service} | ${county} | ${constituency} | ${ward} | ${town}`;
+    }
   });
 }
 

@@ -1,5 +1,7 @@
 
 alert("APPLICATION JS IS LOADING");
+
+
 // ===== LOAD KENYA LOCATIONS =====
 
 let kenyaData = {};

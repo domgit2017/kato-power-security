@@ -150,3 +150,13 @@ if (guardForm) {
   });
 
 }
+
+console.log("KATO POWER APPLICATION JS RUNNING");
+
+const guardFormTest = document.getElementById("guardForm");
+
+if (guardFormTest) {
+  console.log("GUARD FORM FOUND");
+} else {
+  console.log("GUARD FORM NOT FOUND");
+}

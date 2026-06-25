@@ -1,10 +1,3 @@
-// ===============================
-// KATO POWER APPLICATION JS
-// CLEAN PRODUCTION VERSION
-// ===============================
-
-alert("APPLICATION JS LOADED");
-
 // ===== LOAD KENYA LOCATIONS =====
 
 let kenyaData = {};

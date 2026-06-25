@@ -89,74 +89,43 @@ if (document.getElementById('serviceForm')) {
 
 const guardForm = document.getElementById("guardForm");
 
-if (guardForm) {
+guardForm.addEventListener("submit", async function (e) {
+  e.preventDefault();
 
-  guardForm.addEventListener("submit", async function (e) {
+  console.log("FORM SUBMITTED");
 
-    e.preventDefault();
+  const formData = {
+    fullName: document.getElementById("fullName").value,
+    phone: document.getElementById("phone").value,
+    email: document.getElementById("email").value,
+    county: document.getElementById("county").value,
+    constituency: document.getElementById("constituency").value,
+    ward: document.getElementById("ward").value,
+    town: document.getElementById("town").value,
+    location: document.getElementById("location").value,
+    experience: document.getElementById("experience").value,
+    education: document.getElementById("education").value
+  };
 
-    const formData = {
-      fullName: document.getElementById("fullName").value,
-      phone: document.getElementById("phone").value,
-      email: document.getElementById("email").value,
-      county: document.getElementById("county").value,
-      constituency: document.getElementById("constituency").value,
-      ward: document.getElementById("ward").value,
-      location: document.getElementById("location").value,
-      experience: document.getElementById("experience").value,
-      education: document.getElementById("education").value
-    };
+  try {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbxJyIvFZVQm9VusRlkzxbFcTjHxm4lblh3M5US9m9aeGTki6TPbovrjpl_oVqwTifeL/exec", {
+      method: "POST",
+      body: JSON.stringify(formData)
+    });
 
-    try {
+    const result = await response.json();
 
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbxJyIvFZVQm9VusRlkzxbFcTjHxm4lblh3M5US9m9aeGTki6TPbovrjpl_oVqwTifeL/exec",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(formData)
-        }
-      );
+    console.log("SERVER RESPONSE:", result);
 
-      const result = await response.json();
-
-      if (result.success) {
-
-        alert(
-          "Application submitted successfully!\n\nApplicant ID: " +
-          result.applicantId
-        );
-
-        guardForm.reset();
-
-      } else {
-
-        alert("Application submission failed.");
-
-      }
-
-    } catch (error) {
-
-      console.error(error);
-
-      alert(
-        "Application submitted but browser could not read the response. Please check Google Sheets."
-      );
-
+    if (result.success) {
+      alert("Application submitted successfully!\nID: " + result.applicantId);
+      guardForm.reset();
+    } else {
+      alert("Submission failed.");
     }
 
-  });
-
-}
-
-console.log("KATO POWER APPLICATION JS RUNNING");
-
-const guardFormTest = document.getElementById("guardForm");
-
-if (guardFormTest) {
-  console.log("GUARD FORM FOUND");
-} else {
-  console.log("GUARD FORM NOT FOUND");
-}
+  } catch (error) {
+    console.error("ERROR:", error);
+    alert("Error submitting application. Check console.");
+  }
+});
